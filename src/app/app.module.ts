@@ -6,16 +6,20 @@ import { AppComponent } from './app.component';
 import { CarComponent } from './car/car.component';
 import { HomeComponent } from './home/home.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatButtonModule } from '@angular/material/button';
+import { CreateUpdateCarComponent } from './car/create-update-car/create-update-car.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarComponent,
-    HomeComponent
+    HomeComponent,
+    CreateUpdateCarComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatButtonModule
   ],
   providers: [
     provideAnimationsAsync()
