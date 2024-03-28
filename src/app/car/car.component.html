@@ -3,8 +3,6 @@
 <button mat-raised-button color="primary" [routerLink]="['add']">Create New Car</button>
 <hr>
 
-{{ cars | json }}
-
 <table class="table table-striped table-hover">
     <thead>
         <tr>
@@ -16,12 +14,29 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr *ngFor="let car of cars">
+            <td>{{ car.plateNumber }}</td>
+            <td>{{ car.model }}</td>
+            <td>{{ car.modelDate }}</td>
+            <td>
+                <div *ngIf="car.driverFullName; else elseDriverFullName">
+                    {{ car.driverFullName }}
+                </div>
+                <ng-template #elseDriverFullName>
+                    -
+                </ng-template>
+            </td>
+            <td>
+                <a class="text-info" [routerLink]="['details', car.id]" title="Details">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
+                <a class="ms-2" [routerLink]="['edit', car.id]" title="Edit">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+                <a class="ms-2 text-danger" title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </td>
         </tr>
     </tbody>
 </table>

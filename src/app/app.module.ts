@@ -10,13 +10,15 @@ import { CreateUpdateCarComponent } from './car/create-update-car/create-update-
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
+import { CarDetailsComponent } from './car/car-details/car-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CarComponent,
     HomeComponent,
-    CreateUpdateCarComponent
+    CreateUpdateCarComponent,
+    CarDetailsComponent
   ],
   imports: [
     BrowserModule,
