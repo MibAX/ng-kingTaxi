@@ -3,6 +3,7 @@ import { CarService } from '../../services/car.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CarDetailsModel } from '../../models/cars/carDetails.model';
 import { ActivatedRoute } from '@angular/router';
+import { PowerType } from '../../enums/power-type.enum';
 
 @Component({
   selector: 'app-car-details',
@@ -11,8 +12,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CarDetailsComponent implements OnInit {
 
-  carId!: number;
-  carDetails!: CarDetailsModel;
+  public carId!: number;
+  public carDetails!: CarDetailsModel;
+  public powerTypeEnum = PowerType;
 
   constructor(
     private carSvc: CarService,

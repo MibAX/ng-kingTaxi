@@ -1,3 +1,4 @@
+import { PowerType } from "../../enums/power-type.enum";
 import { BookingModel } from "../bookings/booking.model";
 
 export interface CarDetailsModel {
@@ -5,7 +6,7 @@ export interface CarDetailsModel {
     plateNumber: string,
     model: string,
     modelDate: number,
-    powerType: number,
+    powerType: PowerType,
     driverFullName: string,
     bookings: BookingModel[]
 }
