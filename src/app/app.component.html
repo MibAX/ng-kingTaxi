@@ -21,12 +21,19 @@
   </div>
 </nav>
 
+<ngx-spinner size="medium" [fullScreen]="false">
+  <h4 class="text-light mt-2">Loading the awesome...</h4>
+</ngx-spinner>
+
 <div class="container">
   <router-outlet />
 </div>
 
+
 <div class="container">
+
   <footer class="py-5">
+    <hr class="my-5">
     <div class="row">
       <div class="col-6 col-md-2 mb-3">
         <h5>Section</h5>

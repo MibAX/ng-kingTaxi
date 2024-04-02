@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { CarDetailsModel } from '../../models/cars/carDetails.model';
 import { ActivatedRoute } from '@angular/router';
 import { PowerType } from '../../enums/power-type.enum';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-car-details',
@@ -18,13 +19,14 @@ export class CarDetailsComponent implements OnInit {
 
   constructor(
     private carSvc: CarService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit(): void {
 
     this.setCarId();
-    this.loadCarDetails();
+    this.getCarDetails();
   }
 
 
@@ -38,11 +40,14 @@ export class CarDetailsComponent implements OnInit {
     }
   }
 
-  private loadCarDetails(): void {
+  private getCarDetails(): void {
+
+    this.spinner.show();
 
     this.carSvc.getCar(this.carId).subscribe({
       next: (carDetailsFromApi: CarDetailsModel) => {
 
+        this.spinner.hide();
         this.carDetails = carDetailsFromApi;
       }
     });
