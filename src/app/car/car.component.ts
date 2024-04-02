@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarService } from '../services/car.service';
 import { CarModel } from '../models/cars/car.model';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-car',
@@ -12,7 +13,9 @@ export class CarComponent implements OnInit {
 
   cars: CarModel[] = [];
 
-  constructor(private carSvc: CarService) { }
+  constructor(
+    private carSvc: CarService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -21,7 +24,7 @@ export class CarComponent implements OnInit {
         this.cars = carsFromApi;
       },
       error: (err: HttpErrorResponse) => {
-        console.log(err);
+        this.snackBar.open("Couldn't get cars. Please contact system admin.", "Ok");
       }
     });
   }
