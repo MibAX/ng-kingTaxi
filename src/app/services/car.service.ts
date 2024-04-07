@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { CarModel } from '../models/cars/car.model';
 import { CarDetailsModel } from '../models/cars/carDetails.model';
 import { environment } from '../../environments/environment.development';
+import { CreateUpdateCarModel } from '../models/cars/createUpdateCar.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,11 @@ export class CarService {
   getCar(id: number): Observable<CarDetailsModel> {
 
     return this.http.get<CarDetailsModel>(`${this.carApiUrl}/GetCar/${id}`);
+  }
+
+  createCar(car: CreateUpdateCarModel): Observable<any> {
+
+    return this.http.post(`${this.carApiUrl}/CreateCar`, car);
   }
 
 }

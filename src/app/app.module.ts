@@ -10,6 +10,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { CarDetailsComponent } from './car/car-details/car-details.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MaterialModule } from './shared/material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MaterialModule } from './shared/material.module';
     BrowserModule,
     AppRoutingModule,
     NgxSpinnerModule.forRoot({ type: 'line-scale' }),
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [
     provideAnimationsAsync(),

@@ -1,47 +1,65 @@
 <h1>Create a new Car</h1>
 <hr>
 
-<div class="row">
-    <div class="col-md-6">
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="row">
+        <div class="col-md-6">
 
-        <div>
+            <div>
 
-            <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Plate Number</mat-label>
-                <input matInput placeholder="Enter the car Plate Number">
-            </mat-form-field>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Plate Number</mat-label>
+                    <input formControlName="plateNumber" matInput placeholder="Enter the car Plate Number">
+                    <mat-error>This field is required.</mat-error>
+                </mat-form-field>
+
+            </div>
+
+            <div>
+
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Model Name</mat-label>
+                    <input formControlName="model" matInput placeholder="Enter the car model name">
+                    <mat-error>This field is required.</mat-error>
+                </mat-form-field>
+
+            </div>
 
         </div>
+        <div class="col-md-6">
 
-        <div>
+            <div>
 
-            <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Model Name</mat-label>
-                <input matInput placeholder="Enter the car model name">
-            </mat-form-field>
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Choose a date</mat-label>
+                    <input formControlName="manufactureDate" matInput [matDatepicker]="picker">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error>This field is required.</mat-error>
+                </mat-form-field>
+
+            </div>
+
+            <div>
+
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Choose a Power Type</mat-label>
+                    <mat-select formControlName="powerType">
+                        <mat-option [value]="0">Gasoline</mat-option>
+                        <mat-option [value]="1">Hybrid</mat-option>
+                        <mat-option [value]="2">Ev</mat-option>
+                    </mat-select>
+                    <mat-error>This field is required.</mat-error>
+                </mat-form-field>
+
+            </div>
 
         </div>
-
     </div>
-    <div class="col-md-6">
 
-        <div>
-
-            <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker">
-                <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-
-        </div>
-
-        <div>
-
-            [POWER TYPE ENUM GOES HERE]
-
-        </div>
-
+    <div class="mt-2">
+        <button type="button" mat-raised-button color="basic" [routerLink]="['/car']">Cancel</button>
+        <button class="ms-3" type="submit" mat-raised-button color="primary">Create</button>
     </div>
-</div>
+</form>

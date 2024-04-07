@@ -5,7 +5,9 @@ import { MAT_SNACK_BAR_DEFAULT_OPTIONS, MatSnackBarModule } from '@angular/mater
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { MatSelectModule } from '@angular/material/select';
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 @NgModule({
   exports: [
     MatFormFieldModule,
@@ -13,10 +15,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatSnackBarModule,
     MatProgressSpinnerModule,
     MatInputModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    MatMomentDateModule,
+    MatSelectModule
   ],
   providers: [
-    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 5000 } }
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 5000 } },
+    provideMomentDateAdapter()
   ]
 })
 export class MaterialModule { }
