@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarService } from '../../services/car.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CreateUpdateCarModel } from '../../models/cars/createUpdateCar.model';
 
 @Component({
   selector: 'app-create-update-car',
@@ -10,17 +11,26 @@ import { Router } from '@angular/router';
 })
 export class CreateUpdateCarComponent implements OnInit {
 
+  carId!: number;
   form!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private carSvc: CarService,
-    private router: Router) { }
+    private router: Router,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
 
+    this.setCarIdFromUrl();
     this.BuildForm();
+
+    if (this.carId) {
+
+      this.loadCarForEdit();
+    }
   }
+
 
   submit(): void {
 
@@ -32,13 +42,32 @@ export class CreateUpdateCarComponent implements OnInit {
 
   //#region Private Methods
 
+  setCarIdFromUrl(): void {
+
+    if (this.activatedRoute.snapshot.paramMap.get('id')) {
+
+      this.carId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+    }
+
+  }
+
   private BuildForm(): void {
 
     this.form = this.fb.group({
-      "plateNumber": ['', Validators.required],
+      "plateNumber": ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8)]],
       "model": ['', Validators.required],
       "manufactureDate": ['', Validators.required],
       "powerType": ['', Validators.required]
+    });
+  }
+
+  loadCarForEdit(): void {
+
+    this.carSvc.getCarForEdit(this.carId).subscribe({
+      next: (carFromApi: CreateUpdateCarModel) => {
+
+        this.form.patchValue(carFromApi);
+      }
     });
   }
 
@@ -50,6 +79,7 @@ export class CreateUpdateCarComponent implements OnInit {
       }
     });
   }
+
 
   //#endregion
 }

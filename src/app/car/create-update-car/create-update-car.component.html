@@ -10,7 +10,13 @@
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Plate Number</mat-label>
                     <input formControlName="plateNumber" matInput placeholder="Enter the car Plate Number">
-                    <mat-error>This field is required.</mat-error>
+                    @if(form.get('plateNumber')?.hasError('required')) {
+                    <mat-error>Plate number is required.</mat-error>
+                    }
+                    @else if(form.get('plateNumber')?.hasError('minlength') ||
+                    form.get('plateNumber')?.hasError('maxlength')) {
+                    <mat-error>Plate number must be 8 characters long.</mat-error>
+                    }
                 </mat-form-field>
 
             </div>

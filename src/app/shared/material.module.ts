@@ -10,10 +10,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
 @NgModule({
   exports: [
-    MatFormFieldModule,
     MatButtonModule,
     MatSnackBarModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
     MatInputModule,
     MatDatepickerModule,
     MatMomentDateModule,
