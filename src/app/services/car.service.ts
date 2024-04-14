@@ -36,4 +36,9 @@ export class CarService {
     return this.http.get<CreateUpdateCarModel>(`${this.carApiUrl}/GetCarForEdit/${id}`);
   }
 
+  updateCar(car: CreateUpdateCarModel): Observable<any> {
+
+    return this.http.put(`${this.carApiUrl}/EditCar/${car.id}`, car);
+  }
+
 }
