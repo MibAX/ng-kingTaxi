@@ -11,6 +11,7 @@ import { CarDetailsComponent } from './car/car-details/car-details.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MaterialModule } from './shared/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DeleteCarDialogComponent } from './car/delete-car-dialog/delete-car-dialog.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CarComponent,
     HomeComponent,
     CreateUpdateCarComponent,
-    CarDetailsComponent
+    CarDetailsComponent,
+    DeleteCarDialogComponent
   ],
   imports: [
     BrowserModule,

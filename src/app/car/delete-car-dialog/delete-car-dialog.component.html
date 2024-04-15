@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Delete Car</h1>
+
+<mat-dialog-content>
+
+    <h1 class="fs-1 text-center">
+        <i class="fa-solid fa-triangle-exclamation text-danger"></i>
+    </h1>
+    <h2>
+        Are you sure you want to delete car plate number
+        <span class="text-danger">{{ car.plateNumber }}</span>?
+    </h2>
+
+</mat-dialog-content>
+
+<mat-dialog-actions class="d-block">
+
+    <div class="text-end">
+        <button mat-raised-button cdkFocusInitial [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="warn" [mat-dialog-close]="true">Delete</button>
+    </div>
+
+</mat-dialog-actions>

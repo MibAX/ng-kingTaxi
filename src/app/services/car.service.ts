@@ -41,4 +41,9 @@ export class CarService {
     return this.http.put(`${this.carApiUrl}/EditCar/${car.id}`, car);
   }
 
+  deleteCar(id: number): Observable<any> {
+
+    return this.http.delete(`${this.carApiUrl}/DeleteCar/${id}`);
+  }
+
 }

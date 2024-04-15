@@ -33,7 +33,7 @@
                 <a class="ms-2" [routerLink]="['edit', car.id]" title="Edit">
                     <i class="fa-solid fa-pen"></i>
                 </a>
-                <a class="ms-2 text-danger" title="Delete">
+                <a class="ms-2 text-danger pointer" (click)="deleteCar(car)" title="Delete">
                     <i class="fa-solid fa-trash"></i>
                 </a>
             </td>

@@ -8,6 +8,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatSelectModule } from '@angular/material/select';
 import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+import { MatDialogModule } from '@angular/material/dialog';
+
 @NgModule({
   exports: [
     MatButtonModule,
@@ -17,7 +19,8 @@ import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
     MatInputModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDialogModule
   ],
   providers: [
     { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 5000 } },

@@ -4,6 +4,8 @@ import { CarModel } from '../models/cars/car.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { DeleteCarDialogComponent } from './delete-car-dialog/delete-car-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-car',
@@ -17,13 +19,41 @@ export class CarComponent implements OnInit {
   constructor(
     private carSvc: CarService,
     private snackBar: MatSnackBar,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService,
+    public dialog: MatDialog) { }
 
   ngOnInit(): void {
 
     this.getCars();
   }
 
+  deleteCar(car: CarModel): void {
+
+    const dialogRef = this.dialog.open(DeleteCarDialogComponent, {
+      data: car
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+
+      if (result) {
+
+        this.carSvc.deleteCar(car.id).subscribe({
+          next: () => {
+
+            this.getCars();
+            this.snackBar.open(`Deleted: Car ${car.plateNumber} has been deleted successfully.`, "Ok");
+          },
+          error: (err: HttpErrorResponse) => {
+
+            this.snackBar.open(`ERROR: ${err.message}`, "Error");
+          }
+        });
+
+      }
+
+    });
+  }
 
   //#region Private Functions
 
