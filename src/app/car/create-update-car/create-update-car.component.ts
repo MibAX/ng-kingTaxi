@@ -16,6 +16,7 @@ export class CreateUpdateCarComponent implements OnInit {
 
   carId!: number;
   form!: FormGroup;
+  car?: CreateUpdateCarModel;
 
   pageModeEnum = PageMode;
 
@@ -93,6 +94,7 @@ export class CreateUpdateCarComponent implements OnInit {
       next: (carFromApi: CreateUpdateCarModel) => {
 
         this.form.patchValue(carFromApi);
+        this.car = carFromApi;
       },
       error: (err: HttpErrorResponse) => {
 

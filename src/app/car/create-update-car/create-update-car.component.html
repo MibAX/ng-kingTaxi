@@ -4,7 +4,8 @@
         Create a new Car
     </div>
     <ng-template #pageTitleElse>
-        Update car [CAR NAME HERE]
+        Update car
+        <span class="text-primary">{{ car?.model }}</span> - <span class="text-secondary">{{ car?.plateNumber }}</span>
     </ng-template>
 
 </h1>
