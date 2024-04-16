@@ -13,3 +13,7 @@ body {
 .pointer {
     cursor: pointer;
 }
+
+.text-pink {
+    color: hotpink !important;
+}

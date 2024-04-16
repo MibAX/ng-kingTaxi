@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { CarComponent } from './car/car.component';
 import { CreateUpdateCarComponent } from './car/create-update-car/create-update-car.component';
 import { CarDetailsComponent } from './car/car-details/car-details.component';
+import { DriverComponent } from './driver/driver.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'car/details/:id',
     component: CarDetailsComponent
+  },
+  {
+    path: 'driver',
+    component: DriverComponent
   }
 ];
 

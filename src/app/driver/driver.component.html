@@ -1,0 +1,52 @@
+<h1>Drivers</h1>
+<hr>
+<button mat-raised-button color="primary" [routerLink]="['add']">Create New Driver</button>
+<hr>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let driver of drivers">
+            <td>{{ driver.fullName }}</td>
+            <td>
+                <a href="tel:{{ driver.phoneNumber }}">
+                    {{ driver.phoneNumber }}
+                </a>
+            </td>
+            <td>
+
+                <span *ngIf="driver.gender === genderEnum.Male; else driverGenderElse">
+                    <i class="fa-solid fa-mars text-primary"></i>
+                    <span class="text-primary ms-1">{{ genderEnum[driver.gender] }}</span>
+                </span>
+                <ng-template #driverGenderElse>
+                    <i class="fa-solid fa-venus text-pink"></i>
+                    <span class="text-pink ms-1">{{ genderEnum[driver.gender] }}</span>
+                </ng-template>
+
+
+
+            </td>
+            <td>{{ driver.rating }}</td>
+            <td>
+                <a class="text-info" [routerLink]="['details', driver.id]" title="Details">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
+                <a class="ms-2" [routerLink]="['edit', driver.id]" title="Edit">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+                <a class="ms-2 text-danger pointer" (click)="deleteDriver(driver)" title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
