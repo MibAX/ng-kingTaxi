@@ -32,10 +32,10 @@
                     <span class="text-pink ms-1">{{ genderEnum[driver.gender] }}</span>
                 </ng-template>
 
-
-
             </td>
-            <td>{{ driver.rating }}</td>
+            <td>
+                <star-rating [starType]="'svg'" [rating]="driver.rating" [readOnly]="true"></star-rating>
+            </td>
             <td>
                 <a class="text-info" [routerLink]="['details', driver.id]" title="Details">
                     <i class="fa-solid fa-circle-info"></i>

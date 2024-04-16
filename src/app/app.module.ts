@@ -13,6 +13,7 @@ import { MaterialModule } from './shared/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteCarDialogComponent } from './car/delete-car-dialog/delete-car-dialog.component';
 import { DriverComponent } from './driver/driver.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { DriverComponent } from './driver/driver.component';
     AppRoutingModule,
     NgxSpinnerModule.forRoot({ type: 'line-scale' }),
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StarRatingModule.forRoot()
   ],
   providers: [
     provideAnimationsAsync(),
