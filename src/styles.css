@@ -17,3 +17,7 @@ body {
 .text-pink {
     color: hotpink !important;
 }
+
+.star-rating-custom .rating {
+    justify-content: start;
+}

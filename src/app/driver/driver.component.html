@@ -34,7 +34,8 @@
 
             </td>
             <td>
-                <star-rating [starType]="'svg'" [rating]="driver.rating" [readOnly]="true"></star-rating>
+                <star-rating class="star-rating-custom" [starType]="'svg'" [rating]="driver.rating"
+                    [readOnly]="true"></star-rating>
             </td>
             <td>
                 <a class="text-info" [routerLink]="['details', driver.id]" title="Details">
