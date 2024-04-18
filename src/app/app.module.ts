@@ -14,6 +14,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteCarDialogComponent } from './car/delete-car-dialog/delete-car-dialog.component';
 import { DriverComponent } from './driver/driver.component';
 import { StarRatingModule } from 'angular-star-rating';
+import { CreateUpdateDriverComponent } from './driver/create-update-driver/create-update-driver.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { StarRatingModule } from 'angular-star-rating';
     CreateUpdateCarComponent,
     CarDetailsComponent,
     DeleteCarDialogComponent,
-    DriverComponent
+    DriverComponent,
+    CreateUpdateDriverComponent
   ],
   imports: [
     BrowserModule,
