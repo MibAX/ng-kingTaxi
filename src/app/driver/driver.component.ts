@@ -5,6 +5,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Gender } from '../enums/gender.enum';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDriverDialogComponent } from './delete-driver-dialog/delete-driver-dialog.component';
 
 @Component({
   selector: 'app-driver',
@@ -20,6 +22,7 @@ export class DriverComponent implements OnInit {
     private driverSvc: DriverService,
     private snackBar: MatSnackBar,
     private spinner: NgxSpinnerService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -28,9 +31,31 @@ export class DriverComponent implements OnInit {
 
   }
 
-  deleteDriver(driver: DriverModel): void {
+  deleteDriver(driverFromUI: DriverModel): void {
 
+    const dialogRef = this.dialog.open(DeleteDriverDialogComponent, {
+      data: driverFromUI
+    });
 
+    dialogRef.afterClosed().subscribe({
+      next: (answer: boolean) => { // answer "true"
+
+        //  ?
+        if (answer) {
+
+          this.driverSvc.deleteDriver(driverFromUI.id).subscribe({
+            next: () => {
+              this.loadDrivers();
+            },
+            error: (err: HttpErrorResponse) => {
+
+              this.snackBar.open(`ERROR: ${err.message}`, "Error");
+            }
+          });
+
+        }
+      }
+    })
   }
 
   //#region Private Functions

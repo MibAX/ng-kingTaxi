@@ -15,6 +15,7 @@ import { DeleteCarDialogComponent } from './car/delete-car-dialog/delete-car-dia
 import { DriverComponent } from './driver/driver.component';
 import { StarRatingModule } from 'angular-star-rating';
 import { CreateUpdateDriverComponent } from './driver/create-update-driver/create-update-driver.component';
+import { DeleteDriverDialogComponent } from './driver/delete-driver-dialog/delete-driver-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CreateUpdateDriverComponent } from './driver/create-update-driver/creat
     CarDetailsComponent,
     DeleteCarDialogComponent,
     DriverComponent,
-    CreateUpdateDriverComponent
+    CreateUpdateDriverComponent,
+    DeleteDriverDialogComponent
   ],
   imports: [
     BrowserModule,

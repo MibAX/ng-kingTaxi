@@ -23,4 +23,9 @@ export class DriverService {
 
     return this.http.post(`${this.driverApiUrl}/CreateDriver`, driver);
   }
+
+  deleteDriver(id: number): Observable<any> {
+
+    return this.http.delete(`${this.driverApiUrl}/DeleteDriver/${id}`);
+  }
 }
