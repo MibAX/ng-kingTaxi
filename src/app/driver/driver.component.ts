@@ -38,9 +38,8 @@ export class DriverComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe({
-      next: (answer: boolean) => { // answer "true"
+      next: (answer: boolean) => {
 
-        //  ?
         if (answer) {
 
           this.driverSvc.deleteDriver(driverFromUI.id).subscribe({
@@ -68,12 +67,15 @@ export class DriverComponent implements OnInit {
       next: (driversFromApi: DriverModel[]) => {
 
         this.drivers = driversFromApi;
-        this.spinner.hide();
       },
       error: (err: HttpErrorResponse) => {
-        this.snackBar.open("Couldn't get cars. Please contact system admin.", "Ok");
-      }
 
+        this.snackBar.open(`ERROR: ${err.message}`, "Error")
+      },
+      complete: () => {
+
+        this.spinner.hide();
+      }
     });
   }
 

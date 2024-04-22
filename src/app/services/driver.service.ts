@@ -4,6 +4,7 @@ import { environment } from '../../environments/environment.development';
 import { Observable } from 'rxjs';
 import { DriverModel } from '../models/drivers/driver.model';
 import { CreateUpdateDriverModel } from '../models/drivers/createUpdateDriver.model';
+import { DriverDetailsModel } from '../models/drivers/driverDetails.model';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,11 @@ export class DriverService {
   getDrivers(): Observable<DriverModel[]> {
 
     return this.http.get<DriverModel[]>(`${this.driverApiUrl}/GetDrivers`);
+  }
+
+  getDriver(id: number): Observable<DriverDetailsModel> {
+
+    return this.http.get<DriverDetailsModel>(`${this.driverApiUrl}/GetDriver/${id}`);
   }
 
   createDrivers(driver: CreateUpdateDriverModel): Observable<any> {
