@@ -25,13 +25,23 @@ export class DriverService {
     return this.http.get<DriverDetailsModel>(`${this.driverApiUrl}/GetDriver/${id}`);
   }
 
-  createDrivers(driver: CreateUpdateDriverModel): Observable<any> {
+  createDriver(driver: CreateUpdateDriverModel): Observable<any> {
 
     return this.http.post(`${this.driverApiUrl}/CreateDriver`, driver);
+  }
+
+  getDriverForEdit(id: number): Observable<CreateUpdateDriverModel> {
+
+    return this.http.get<CreateUpdateDriverModel>(`${this.driverApiUrl}/GetDriverForEdit/${id}`);
   }
 
   deleteDriver(id: number): Observable<any> {
 
     return this.http.delete(`${this.driverApiUrl}/DeleteDriver/${id}`);
+  }
+
+  updateDeriver(driver: CreateUpdateDriverModel): Observable<any> {
+
+    return this.http.put(`${this.driverApiUrl}/EditDriver/${driver.id}`, driver);
   }
 }

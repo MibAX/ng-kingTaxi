@@ -17,6 +17,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { CreateUpdateDriverComponent } from './driver/create-update-driver/create-update-driver.component';
 import { DeleteDriverDialogComponent } from './driver/delete-driver-dialog/delete-driver-dialog.component';
 import { DriverDetailsComponent } from './driver/driver-details/driver-details.component';
+import { provideToastr } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,10 @@ import { DriverDetailsComponent } from './driver/driver-details/driver-details.c
   ],
   providers: [
     provideAnimationsAsync(),
-    provideHttpClient()
+    provideHttpClient(),
+    provideToastr({
+      positionClass: 'toast-bottom-right'
+    })
   ],
   bootstrap: [AppComponent]
 })

@@ -7,6 +7,7 @@ import { Gender } from '../enums/gender.enum';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteDriverDialogComponent } from './delete-driver-dialog/delete-driver-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-driver',
@@ -22,7 +23,8 @@ export class DriverComponent implements OnInit {
     private driverSvc: DriverService,
     private snackBar: MatSnackBar,
     private spinner: NgxSpinnerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +46,9 @@ export class DriverComponent implements OnInit {
 
           this.driverSvc.deleteDriver(driverFromUI.id).subscribe({
             next: () => {
+
               this.loadDrivers();
+              this.toastr.success(`Driver ${driverFromUI.fullName} has been deleted successfully.`);
             },
             error: (err: HttpErrorResponse) => {
 

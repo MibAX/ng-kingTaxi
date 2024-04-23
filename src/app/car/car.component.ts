@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { DeleteCarDialogComponent } from './delete-car-dialog/delete-car-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-car',
@@ -20,6 +21,7 @@ export class CarComponent implements OnInit {
     private carSvc: CarService,
     private snackBar: MatSnackBar,
     private spinner: NgxSpinnerService,
+    private toastr: ToastrService,
     public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -42,7 +44,7 @@ export class CarComponent implements OnInit {
           next: () => {
 
             this.getCars();
-            this.snackBar.open(`Deleted: Car ${car.plateNumber} has been deleted successfully.`, "Ok");
+            this.toastr.success(`Car has been deleted successfully.`);
           },
           error: (err: HttpErrorResponse) => {
 

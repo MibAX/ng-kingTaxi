@@ -34,13 +34,18 @@ const routes: Routes = [
     component: DriverComponent
   },
   {
+    path: 'driver/details/:id',
+    component: DriverDetailsComponent
+  },
+  {
     path: 'driver/add',
     component: CreateUpdateDriverComponent
   },
   {
-    path: 'driver/details/:id',
-    component: DriverDetailsComponent
+    path: 'driver/edit/:id',
+    component: CreateUpdateDriverComponent
   }
+
 ];
 
 @NgModule({

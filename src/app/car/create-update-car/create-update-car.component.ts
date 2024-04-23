@@ -6,6 +6,8 @@ import { CreateUpdateCarModel } from '../../models/cars/createUpdateCar.model';
 import { PageMode } from '../../enums/page-mode.enum';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-create-update-car',
@@ -28,7 +30,9 @@ export class CreateUpdateCarComponent implements OnInit {
     private carSvc: CarService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
 
@@ -90,6 +94,8 @@ export class CreateUpdateCarComponent implements OnInit {
 
   loadCarForEdit(): void {
 
+    this.spinner.show();
+
     this.carSvc.getCarForEdit(this.carId).subscribe({
       next: (carFromApi: CreateUpdateCarModel) => {
 
@@ -99,33 +105,52 @@ export class CreateUpdateCarComponent implements OnInit {
       error: (err: HttpErrorResponse) => {
 
         this.snackBar.open(`ERROR: ${err.message}`, "Error")
+      },
+      complete: () => {
+
+        this.spinner.hide();
       }
     });
   }
 
   private createCar(): void {
 
+    this.spinner.show();
+
     this.carSvc.createCar(this.form.value).subscribe({
       next: () => {
+
         this.router.navigate(['/car']);
+        this.toastr.success(`Car has been created successfully.`);
       },
       error: (err: HttpErrorResponse) => {
 
         this.snackBar.open(`ERROR: ${err.message}`, "Error")
+      },
+      complete: () => {
+
+        this.spinner.hide();
       }
     });
   }
 
   private updateCar(): void {
 
+    this.spinner.show();
+
     this.carSvc.updateCar(this.form.value).subscribe({
       next: () => {
 
         this.router.navigate(['/car']);
+        this.toastr.success(`Car has been updated successfully.`);
       },
       error: (err: HttpErrorResponse) => {
 
         this.snackBar.open(`ERROR: ${err.message}`, "Error")
+      },
+      complete: () => {
+
+        this.spinner.hide();
       }
 
     });

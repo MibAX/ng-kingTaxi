@@ -1,7 +1,13 @@
 <h2 mat-dialog-title>Delete Driver</h2>
 
 <mat-dialog-content>
-    Are you sure you want to delete driver <span class="text-danger"> {{ driver.fullName }}</span>?
+    <h1 class="fs-1 text-center">
+        <i class="fa-solid fa-triangle-exclamation text-danger"></i>
+    </h1>
+    <h2>
+        Are you sure you want to delete driver <span class="text-danger"> {{ driver.fullName }}</span>?
+    </h2>
+
 </mat-dialog-content>
 
 <mat-dialog-actions class="justify-content-end">
