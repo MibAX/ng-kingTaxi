@@ -1,0 +1,35 @@
+<h1>Passengers</h1>
+<hr>
+<button type="button" mat-raised-button color="primary">Create Passenger</button>
+<hr>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Passenger</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let passenger of passengers">
+            <td>{{ passenger.fullName }}</td>
+            <td>{{ passenger.phoneNumber }}</td>
+            <td>{{ passenger.gender }}</td>
+            <td>{{ passenger.age }}</td>
+            <td>
+                <a class="text-info" [routerLink]="['details', passenger.id]" title="Details">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
+                <a class="ms-2" [routerLink]="['edit', passenger.id]" title="Edit">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+                <a class="ms-2 text-danger pointer" (click)="deletePassenger(passenger)" title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

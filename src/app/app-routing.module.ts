@@ -7,6 +7,7 @@ import { CarDetailsComponent } from './car/car-details/car-details.component';
 import { DriverComponent } from './driver/driver.component';
 import { CreateUpdateDriverComponent } from './driver/create-update-driver/create-update-driver.component';
 import { DriverDetailsComponent } from './driver/driver-details/driver-details.component';
+import { PassengerComponent } from './passenger/passenger.component';
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
   {
     path: 'driver/edit/:id',
     component: CreateUpdateDriverComponent
+  },
+  {
+    path: 'passenger',
+    component: PassengerComponent
   }
 
 ];

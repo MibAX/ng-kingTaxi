@@ -18,6 +18,7 @@ import { CreateUpdateDriverComponent } from './driver/create-update-driver/creat
 import { DeleteDriverDialogComponent } from './driver/delete-driver-dialog/delete-driver-dialog.component';
 import { DriverDetailsComponent } from './driver/driver-details/driver-details.component';
 import { provideToastr } from 'ngx-toastr';
+import { PassengerComponent } from './passenger/passenger.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { provideToastr } from 'ngx-toastr';
     DriverComponent,
     CreateUpdateDriverComponent,
     DeleteDriverDialogComponent,
-    DriverDetailsComponent
+    DriverDetailsComponent,
+    PassengerComponent
   ],
   imports: [
     BrowserModule,
