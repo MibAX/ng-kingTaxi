@@ -8,6 +8,7 @@ import { DriverComponent } from './driver/driver.component';
 import { CreateUpdateDriverComponent } from './driver/create-update-driver/create-update-driver.component';
 import { DriverDetailsComponent } from './driver/driver-details/driver-details.component';
 import { PassengerComponent } from './passenger/passenger.component';
+import { PassengerDetailsComponent } from './passenger/passenger-details/passenger-details.component';
 
 const routes: Routes = [
   {
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'passenger',
     component: PassengerComponent
+  },
+  {
+    path: 'passenger/details/:id',
+    component: PassengerDetailsComponent
   }
 
 ];
