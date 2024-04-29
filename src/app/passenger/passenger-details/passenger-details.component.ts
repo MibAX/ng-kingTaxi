@@ -5,6 +5,7 @@ import { PassengerDetailsModel } from '../../models/passengers/passengerDetails.
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Gender } from '../../enums/gender.enum';
 
 @Component({
   selector: 'app-passenger-details',
@@ -15,6 +16,7 @@ export class PassengerDetailsComponent implements OnInit {
 
   passengerId!: number;
   passenger?: PassengerDetailsModel;
+  genderEnum = Gender;
 
   constructor(
     private passengerSvc: PassengerService,

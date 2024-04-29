@@ -7,5 +7,6 @@ export interface PassengerDetailsModel {
     fullName: string,
     age: number,
     gender: Gender,
-    Bookings: BookingModel[]
+    bookings: BookingModel[],
+    totalSpent: number
 }

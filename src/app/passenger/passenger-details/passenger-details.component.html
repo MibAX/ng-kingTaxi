@@ -3,3 +3,90 @@
     <span class="text-primary">{{ passenger?.fullName }}</span>
 </h1>
 <hr>
+
+<div class="row">
+    <div class="col-md-2">
+        Passenger Name
+    </div>
+    <div class="col-md-4">
+        <span class="fw-bold">{{ passenger?.fullName }}</span>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-2">
+        Phone Number
+    </div>
+    <div class="col-md-4">
+        <span class="fw-bold">{{ passenger?.phoneNumber }}</span>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-2">
+        Age
+    </div>
+    <div class="col-md-4">
+        <span class="fw-bold">{{ passenger?.age }}</span>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-2">
+        Gender
+    </div>
+    <div class="col-md-4">
+
+        <span *ngIf="passenger?.gender === genderEnum.Male; else passengerGenderElse">
+            <i class="fa-solid fa-mars text-primary fw-bold"></i>
+            <span class="text-primary ms-1 fw-bold">Male</span>
+        </span>
+        <ng-template #passengerGenderElse>
+            <i class="fa-solid fa-venus text-pink fw-bold"></i>
+            <span class="text-pink ms-1 fw-bold">Female</span>
+        </ng-template>
+
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-2">
+        Total Spent
+    </div>
+    <div class="col-md-4">
+        <span class="fw-bold">{{ passenger?.totalSpent | currency }}</span>
+    </div>
+</div>
+
+<hr>
+<button mat-raised-button color="basic" [routerLink]="['/passenger']">Back</button>
+<button mat-raised-button color="primary" class="ms-2" [routerLink]="['/passenger/edit', passenger?.id]">Edit</button>
+<hr>
+
+<h2 class="mb-1 mt-4">
+    Passenger Bookings
+</h2>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Pickup Time</th>
+            <th>From Address</th>
+            <th>To Address</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let booking of passenger?.bookings">
+            <td>{{ booking.pickUpTime | date:"short" }}</td>
+            <td>{{ booking.fromAddress }}</td>
+            <td>{{ booking.toAddress }}</td>
+            <td>{{ booking.price | currency }}</td>
+            <td>
+                <a class="text-info" [routerLink]="['/bookings/details', booking.id]" title="Details">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>
