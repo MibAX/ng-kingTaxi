@@ -9,6 +9,7 @@ import { CreateUpdateDriverComponent } from './driver/create-update-driver/creat
 import { DriverDetailsComponent } from './driver/driver-details/driver-details.component';
 import { PassengerComponent } from './passenger/passenger.component';
 import { PassengerDetailsComponent } from './passenger/passenger-details/passenger-details.component';
+import { CreateUpdatePassengerComponent } from './passenger/create-update-passenger/create-update-passenger.component';
 
 const routes: Routes = [
   {
@@ -54,8 +55,15 @@ const routes: Routes = [
   {
     path: 'passenger/details/:id',
     component: PassengerDetailsComponent
+  },
+  {
+    path: 'passenger/add',
+    component: CreateUpdatePassengerComponent
+  },
+  {
+    path: 'passenger/edit/:id',
+    component: CreateUpdatePassengerComponent
   }
-
 ];
 
 @NgModule({

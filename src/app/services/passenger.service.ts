@@ -32,7 +32,7 @@ export class PassengerService {
 
   getPassengerForEdit(id: number): Observable<CreateUpdatePassengerModel> {
 
-    return this.http.get<CreateUpdatePassengerModel>(`${this.passengerApiUrl}/GetPassengerFroEdit/${id}`);
+    return this.http.get<CreateUpdatePassengerModel>(`${this.passengerApiUrl}/GetPassengerForEdit/${id}`);
   }
 
   editPassenger(passenger: CreateUpdatePassengerModel): Observable<any> {
