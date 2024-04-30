@@ -49,6 +49,15 @@ export class CreateUpdatePassengerComponent implements OnInit {
 
     if (this.form.valid) {
 
+      if (this.thePageMode === PageMode.Create) {
+
+        this.createPassenger();
+      }
+      else {
+
+        this.editPassenger();
+      }
+
     }
 
   }
@@ -89,6 +98,48 @@ export class CreateUpdatePassengerComponent implements OnInit {
       error: (err: HttpErrorResponse) => {
 
         this.snackBar.open(`ERROR: ${err.message}`, "Error")
+      },
+      complete: () => {
+
+        this.spinner.hide();
+      }
+    });
+  }
+
+  private createPassenger(): void {
+
+    this.spinner.show();
+
+    this.passengerSvc.createPassenger(this.form.value).subscribe({
+      next: () => {
+
+        this.toastr.success(`Passenger has been created successfully.`);
+        this.router.navigate(['/passenger']);
+      },
+      error: (err: HttpErrorResponse) => {
+
+        this.snackBar.open(`ERROR: ${err.message}`, "Error");
+      },
+      complete: () => {
+
+        this.spinner.hide();
+      }
+    });
+  }
+
+  private editPassenger(): void {
+
+    this.spinner.show();
+
+    this.passengerSvc.editPassenger(this.form.value).subscribe({
+      next: () => {
+
+        this.toastr.success("Passenger has been saved successfully.");
+        this.router.navigate(['/passenger']);
+      },
+      error: (err: HttpErrorResponse) => {
+
+        this.snackBar.open(`ERROR: ${err.message}`, "Error");
       },
       complete: () => {
 
