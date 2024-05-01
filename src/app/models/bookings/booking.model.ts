@@ -6,6 +6,6 @@ export interface BookingModel {
     price: number,
     driverFullName: string,
     driverPhoneNumber: string,
-    driverRating: string,
+    driverRating: number,
     carPlateNumber: string,
 }

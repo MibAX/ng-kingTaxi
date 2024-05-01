@@ -22,6 +22,7 @@ import { PassengerComponent } from './passenger/passenger.component';
 import { PassengerDetailsComponent } from './passenger/passenger-details/passenger-details.component';
 import { CreateUpdatePassengerComponent } from './passenger/create-update-passenger/create-update-passenger.component';
 import { DeletePassengerDialogComponent } from './passenger/delete-passenger-dialog/delete-passenger-dialog.component';
+import { BookingComponent } from './booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { DeletePassengerDialogComponent } from './passenger/delete-passenger-dia
     PassengerComponent,
     PassengerDetailsComponent,
     CreateUpdatePassengerComponent,
-    DeletePassengerDialogComponent
+    DeletePassengerDialogComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,

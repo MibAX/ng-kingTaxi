@@ -1,0 +1,50 @@
+<h1>Bookings</h1>
+<hr>
+<button mat-raised-button color="primary" [routerLink]="['add']">Book Now</button>
+<hr>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Pickup Time</th>
+            <th>Trip</th>
+            <th>Driver</th>
+            <th>Driver Rating</th>
+            <th>Car Plate Number</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let booking of bookings">
+            <td>
+                {{ booking.pickUpTime | date: "MMM dd, yyyy - hh:mm a" }}
+            </td>
+            <td>{{ booking.fromAddress }} - {{ booking.toAddress }}</td>
+            <td>
+                {{ booking.driverFullName }}
+                <a class="ms-1" href="tel:{{ booking.driverPhoneNumber }}" title="Call the driver">
+                    <i class="fa-solid fa-mobile-screen-button"></i>
+                </a>
+            </td>
+            <td>
+                <star-rating class="star-rating-custom" [starType]="'svg'" [rating]="booking.driverRating"
+                    [readOnly]="true"></star-rating>
+            </td>
+
+            <td>{{ booking.carPlateNumber }}</td>
+            <td>
+                <a class="text-info" [routerLink]="['details', booking.id]" title="Details">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
+                <a class="ms-2" [routerLink]="['edit', booking.id]" title="Edit">
+                    <i class="fa-solid fa-pen"></i>
+                </a>
+                <a class="ms-2 text-danger pointer" (click)="deleteBooking(booking)" title="Delete">
+                    <i class="fa-solid fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+
+
+</table>

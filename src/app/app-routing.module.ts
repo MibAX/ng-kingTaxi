@@ -10,6 +10,7 @@ import { DriverDetailsComponent } from './driver/driver-details/driver-details.c
 import { PassengerComponent } from './passenger/passenger.component';
 import { PassengerDetailsComponent } from './passenger/passenger-details/passenger-details.component';
 import { CreateUpdatePassengerComponent } from './passenger/create-update-passenger/create-update-passenger.component';
+import { BookingComponent } from './booking/booking.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,10 @@ const routes: Routes = [
   {
     path: 'passenger/edit/:id',
     component: CreateUpdatePassengerComponent
+  },
+  {
+    path: 'booking',
+    component: BookingComponent
   }
 ];
 
