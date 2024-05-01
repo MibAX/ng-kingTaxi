@@ -4,6 +4,8 @@ import { BookingModel } from '../models/bookings/booking.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteBookingDialogComponent } from './delete-booking-dialog/delete-booking-dialog.component';
 
 @Component({
   selector: 'app-booking',
@@ -18,6 +20,7 @@ export class BookingComponent implements OnInit {
     private bookingSvc: BookingService,
     private spinner: NgxSpinnerService,
     private snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) { }
 
 
@@ -28,7 +31,19 @@ export class BookingComponent implements OnInit {
 
   deleteBooking(booking: BookingModel): void {
 
-    alert("[NOT IMPLEMENTED YET]");
+    const dialogRef = this.dialog.open(DeleteBookingDialogComponent, {
+      data: booking
+    });
+
+    dialogRef.afterClosed().subscribe({
+      next: (answer: boolean) => {
+
+        if (answer) {
+
+          this.bookingSvc
+        }
+      }
+    });
   }
 
   //#region Private Functions
