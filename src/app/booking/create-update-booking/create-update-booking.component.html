@@ -1,0 +1,62 @@
+<h1>
+    <div *ngIf="thePageMode === pageModeEnum.Create; else pageTitleElse">
+        Create a new Booking
+    </div>
+    <ng-template #pageTitleElse>
+        Update Booking
+        <span class="text-primary">#{{ booking?.id }} - {{ booking?.pickUpTime | date: 'shortTime' }}</span>
+    </ng-template>
+</h1>
+<hr>
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="row">
+        <div class="col-md-6">
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>From Address</mat-label>
+                <input formControlName="fromAddress" matInput placeholder="From Address">
+                <mat-error>This field is required.</mat-error>
+            </mat-form-field>
+
+        </div>
+        <div class="col-md-6">
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>To Address</mat-label>
+                <input formControlName="toAddress" matInput placeholder="To Address">
+                <mat-error>This field is required.</mat-error>
+            </mat-form-field>
+
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6">
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>PickUp Time</mat-label>
+                <input formControlName="pickUpTime" [min]="minDate" matInput [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error>This field is required.</mat-error>
+            </mat-form-field>
+
+        </div>
+        <div class="col-md-6">
+
+            <!-- <mat-form-field>
+                <mat-label>Passengers</mat-label>
+                <mat-select formControlName="passengerId" multiple>
+                    @for (passenger of passengerLookup; track passenger) {
+                    <mat-option [value]="passenger.id">{{passenger.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field> -->
+
+        </div>
+    </div>
+
+</form>
