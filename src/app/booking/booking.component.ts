@@ -6,6 +6,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteBookingDialogComponent } from './delete-booking-dialog/delete-booking-dialog.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-booking',
@@ -20,7 +21,8 @@ export class BookingComponent implements OnInit {
     private bookingSvc: BookingService,
     private spinner: NgxSpinnerService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastr: ToastrService
   ) { }
 
 
@@ -40,7 +42,16 @@ export class BookingComponent implements OnInit {
 
         if (answer) {
 
-          this.bookingSvc
+          this.spinner.show();
+
+          this.bookingSvc.deleteBooking(booking.id).subscribe({
+            next: () => {
+
+              this.spinner.hide();
+              this.toastr.success(`Booking #${booking.id} has been deleted successfully.`);
+              this.loadBookings();
+            }
+          });
         }
       }
     });

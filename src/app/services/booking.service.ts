@@ -11,7 +11,7 @@ import { CreateUpdateBookingModel } from '../models/bookings/createUpdateBooking
 })
 export class BookingService {
 
-  private bookingApiUrl = `${environment.apiUrl}/Bookings `
+  private bookingApiUrl = `${environment.apiUrl}/Bookings`;
 
   constructor(private http: HttpClient) { }
 
