@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { PassengerModel } from '../models/passengers/passenger.model';
 import { PassengerDetailsModel } from '../models/passengers/passengerDetails.model';
 import { CreateUpdatePassengerModel } from '../models/passengers/createUpdatePassenger.model';
+import { LookupModel } from '../models/lookup.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,10 @@ export class PassengerService {
   deletePassenger(id: number): Observable<any> {
 
     return this.http.delete(`${this.passengerApiUrl}/DeletePassenger/${id}`);
+  }
+
+  getPassengerLookup(): Observable<LookupModel[]> {
+
+    return this.http.get<LookupModel[]>(`${this.passengerApiUrl}/GetPassengerLookup`);
   }
 }

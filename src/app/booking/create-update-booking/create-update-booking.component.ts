@@ -7,6 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { PageMode } from '../../enums/page-mode.enum';
 import { CreateUpdateBookingModel } from '../../models/bookings/createUpdateBooking.model';
+import { LookupModel } from '../../models/lookup.model';
+import { PassengerService } from '../../services/passenger.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-create-update-booking',
@@ -19,12 +22,14 @@ export class CreateUpdateBookingComponent implements OnInit {
 
   form!: FormGroup;
   booking?: CreateUpdateBookingModel;
+  passengerLookup: LookupModel[] = [];
 
   thePageMode: PageMode = PageMode.Create;
   pageModeEnum = PageMode;
 
   constructor(
     private bookingSvc: BookingService,
+    private passengerSvc: PassengerService,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -38,6 +43,7 @@ export class CreateUpdateBookingComponent implements OnInit {
 
   ngOnInit(): void {
 
+    this.loadPassengerLookup();
     this.buildForm();
   }
 
@@ -66,13 +72,33 @@ export class CreateUpdateBookingComponent implements OnInit {
     });
   }
 
+  private loadPassengerLookup(): void {
+
+    this.spinner.show();
+
+    this.passengerSvc.getPassengerLookup().subscribe({
+      next: (passengerLookupFromApi: LookupModel[]) => {
+
+        this.passengerLookup = passengerLookupFromApi;
+      },
+      error: (err: HttpErrorResponse) => {
+
+        this.snackBar.open(`ERROR: ${err.message}`, "Error");
+      },
+      complete: () => {
+
+        this.spinner.hide();
+      }
+    });
+  }
+
   private setPickupTimeMin(): void {
 
-    const currentDate: Date = new Date();
+    const currentDate: Date = new Date(); // C# DateTime.Now
 
-    const year: number = currentDate.getFullYear();
+    const year: number = currentDate.getFullYear(); // 2024
     const month: number = currentDate.getMonth(); // Note: Months are zero-based (0 for January, 1 for February, etc.)
-    const day: number = currentDate.getDate();
+    const day: number = currentDate.getDate(); // 6
 
     this.minDate = new Date(year, month, day);
   }
