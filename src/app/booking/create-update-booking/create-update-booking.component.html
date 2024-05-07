@@ -12,7 +12,7 @@
 <form [formGroup]="form" (ngSubmit)="submit()">
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-sm-6">
 
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>From Address</mat-label>
@@ -21,7 +21,7 @@
             </mat-form-field>
 
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
 
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>To Address</mat-label>
@@ -33,7 +33,7 @@
     </div>
 
     <div class="row mt-3">
-        <div class="col-md-6">
+        <div class="col-sm-6">
 
             <mat-form-field appearance="outline" class="w-100">
                 <mat-label>PickUp Time</mat-label>
@@ -45,18 +45,47 @@
             </mat-form-field>
 
         </div>
-        <div class="col-md-6">
+        <div class="col-sm-6">
 
-            <mat-form-field>
+            <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Passengers</mat-label>
-                <mat-select formControlName="passengerId" multiple>
+                <mat-select formControlName="passengerIds" multiple>
                     @for (passenger of passengerLookup; track passenger) {
                     <mat-option [value]="passenger.id">{{passenger.name}}</mat-option>
                     }
                 </mat-select>
             </mat-form-field>
-            
+
         </div>
+    </div>
+
+    <div class="row mt-3">
+
+        <div class="col-sm-6">
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Driver</mat-label>
+                <mat-select formControlName="driverId">
+                    @for (driver of driverLookup; track driver) {
+                    <mat-option [value]="driver.id">{{driver.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+        <div class="col-sm-6">
+
+            <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Car</mat-label>
+                <mat-select formControlName="carId">
+                    @for (car of carLookup; track car) {
+                    <mat-option [value]="car.id">{{car.name}}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+        </div>
+
     </div>
 
 </form>

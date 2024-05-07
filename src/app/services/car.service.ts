@@ -5,6 +5,7 @@ import { CarModel } from '../models/cars/car.model';
 import { CarDetailsModel } from '../models/cars/carDetails.model';
 import { environment } from '../../environments/environment.development';
 import { CreateUpdateCarModel } from '../models/cars/createUpdateCar.model';
+import { LookupModel } from '../models/lookup.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,6 +45,11 @@ export class CarService {
   deleteCar(id: number): Observable<any> {
 
     return this.http.delete(`${this.carApiUrl}/DeleteCar/${id}`);
+  }
+
+  getCarLookup(): Observable<LookupModel[]> {
+
+    return this.http.get<LookupModel[]>(`${this.carApiUrl}/GetCarLookup/`);
   }
 
 }

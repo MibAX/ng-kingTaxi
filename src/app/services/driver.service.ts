@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { DriverModel } from '../models/drivers/driver.model';
 import { CreateUpdateDriverModel } from '../models/drivers/createUpdateDriver.model';
 import { DriverDetailsModel } from '../models/drivers/driverDetails.model';
+import { LookupModel } from '../models/lookup.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +44,10 @@ export class DriverService {
   updateDeriver(driver: CreateUpdateDriverModel): Observable<any> {
 
     return this.http.put(`${this.driverApiUrl}/EditDriver/${driver.id}`, driver);
+  }
+
+  getDriverLookup(): Observable<LookupModel[]> {
+
+    return this.http.get<LookupModel[]>(`${this.driverApiUrl}/GetDriverLookup/`);
   }
 }

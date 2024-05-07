@@ -10,6 +10,8 @@ import { CreateUpdateBookingModel } from '../../models/bookings/createUpdateBook
 import { LookupModel } from '../../models/lookup.model';
 import { PassengerService } from '../../services/passenger.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { CarService } from '../../services/car.service';
+import { DriverService } from '../../services/driver.service';
 
 @Component({
   selector: 'app-create-update-booking',
@@ -22,7 +24,11 @@ export class CreateUpdateBookingComponent implements OnInit {
 
   form!: FormGroup;
   booking?: CreateUpdateBookingModel;
+
   passengerLookup: LookupModel[] = [];
+  driverLookup: LookupModel[] = [];
+  carLookup: LookupModel[] = [];
+
 
   thePageMode: PageMode = PageMode.Create;
   pageModeEnum = PageMode;
@@ -30,6 +36,8 @@ export class CreateUpdateBookingComponent implements OnInit {
   constructor(
     private bookingSvc: BookingService,
     private passengerSvc: PassengerService,
+    private driverSvc: DriverService,
+    private carSvc: CarService,
     private fb: FormBuilder,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
@@ -43,7 +51,7 @@ export class CreateUpdateBookingComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.loadPassengerLookup();
+    this.loadLookups();
     this.buildForm();
   }
 
@@ -58,6 +66,14 @@ export class CreateUpdateBookingComponent implements OnInit {
   }
 
   //#region Private Functions
+
+  private loadLookups(): void {
+
+    this.loadPassengerLookup();
+    this.loadDriverLookup();
+    this.loadCarLookup();
+
+  }
 
   private buildForm(): void {
 
@@ -90,6 +106,46 @@ export class CreateUpdateBookingComponent implements OnInit {
         this.spinner.hide();
       }
     });
+  }
+
+  private loadDriverLookup(): void {
+
+    this.spinner.show();
+    this.driverSvc.getDriverLookup().subscribe({
+      next: (driverLookupFromApi: LookupModel[]) => {
+
+        this.driverLookup = driverLookupFromApi;
+      },
+      error: (err: HttpErrorResponse) => {
+
+        this.snackBar.open(`ERROR: ${err.message}`, "Error");
+      },
+      complete: () => {
+
+        this.spinner.hide();
+      }
+    });
+
+  }
+
+  private loadCarLookup(): void {
+
+    this.spinner.show();
+    this.carSvc.getCarLookup().subscribe({
+      next: (carLookupFromApi: LookupModel[]) => {
+
+        this.carLookup = carLookupFromApi;
+      },
+      error: (err: HttpErrorResponse) => {
+
+        this.snackBar.open(`ERROR: ${err.message}`, "Error");
+      },
+      complete: () => {
+
+        this.spinner.hide();
+      }
+    });
+
   }
 
   private setPickupTimeMin(): void {
