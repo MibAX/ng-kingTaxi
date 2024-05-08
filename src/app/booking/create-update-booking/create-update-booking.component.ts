@@ -58,10 +58,15 @@ export class CreateUpdateBookingComponent implements OnInit {
   submit(): void {
 
     if (this.form.valid) {
-      alert("From is valid");
-    }
-    else {
-      alert("From is invalid");
+
+      if (this.thePageMode === PageMode.Create) {
+
+        this.createBooking();
+      }
+      else {
+
+        this.editBooking()
+      }
     }
   }
 
@@ -82,9 +87,9 @@ export class CreateUpdateBookingComponent implements OnInit {
       fromAddress: ['', Validators.required],
       toAddress: ['', Validators.required],
       pickUpTime: ['', Validators.required],
-      passengerIds: [],
-      carId: [''],
-      driverId: [''],
+      passengerIds: ['', Validators.required],
+      carId: [],
+      driverId: [],
     });
   }
 
@@ -159,5 +164,30 @@ export class CreateUpdateBookingComponent implements OnInit {
     this.minDate = new Date(year, month, day);
   }
 
+  private createBooking(): void {
+
+    this.spinner.show();
+
+    this.bookingSvc.createBooking(this.form.value).subscribe({
+      next: (bookingId: number) => {
+
+        this.toastr.success(`Booking #${bookingId} has been created successfully.`);
+        this.router.navigate(['/booking']);
+      },
+      error: (err: HttpErrorResponse) => {
+
+        this.snackBar.open(`ERROR: ${err.message}`, "Error");
+      },
+      complete: () => {
+
+        this.spinner.hide();
+      }
+    });
+  }
+
+  private editBooking(): void {
+
+
+  }
   //#endregion
 }

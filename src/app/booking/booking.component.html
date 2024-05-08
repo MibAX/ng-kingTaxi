@@ -23,18 +23,46 @@
             </td>
             <td>{{ booking.fromAddress }} - {{ booking.toAddress }}</td>
             <td>
-                {{ booking.driverFullName }}
-                <a class="ms-1" href="tel:{{ booking.driverPhoneNumber }}" title="Call the driver">
-                    <i class="fa-solid fa-mobile-screen-button"></i>
-                </a>
+
+                <div *ngIf="booking.driverFullName; else driverInfoElse">
+
+                    {{ booking.driverFullName }}
+                    <a class="ms-1" href="tel:{{ booking.driverPhoneNumber }}" title="Call the driver">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                    </a>
+
+                </div>
+                <ng-template #driverInfoElse>
+                    <i>Not Set</i>
+                </ng-template>
+
+
             </td>
             <td>
-                <star-rating class="star-rating-custom" [starType]="'svg'" [rating]="booking.driverRating"
-                    [readOnly]="true"></star-rating>
+
+                <div *ngIf="booking.driverRating > 0; else driverRatingElse">
+
+                    <star-rating class="star-rating-custom" [starType]="'svg'" [rating]="booking.driverRating"
+                        [readOnly]="true"></star-rating>
+
+                </div>
+                <ng-template #driverRatingElse>
+                    <i>Not Set</i>
+                </ng-template>
+
             </td>
 
-            <!-- TO DO add get car by plate number link -->
-            <td>{{ booking.carPlateNumber }}</td>
+            <td>
+                <div *ngIf="booking.carPlateNumber; else carPlateNumberElse">
+
+                    {{ booking.carPlateNumber }}
+
+                </div>
+                <ng-template #carPlateNumberElse>
+                    <i>Not Set</i>
+                </ng-template>
+            </td>
+
             <td>
                 <a class="text-info" [routerLink]="['details', booking.id]" title="Details">
                     <i class="fa-solid fa-circle-info"></i>

@@ -25,9 +25,9 @@ export class BookingService {
     return this.http.get<BookingDetailsModel>(`${this.bookingApiUrl}/GetBooking/${id}`);
   }
 
-  createBooking(booking: CreateUpdateBookingModel): Observable<any> {
+  createBooking(booking: CreateUpdateBookingModel): Observable<number> {
 
-    return this.http.post(`${this.bookingApiUrl}/CreateBooking`, booking);
+    return this.http.post<number>(`${this.bookingApiUrl}/CreateBooking`, booking);
   }
 
   getBookingForEdit(id: number): Observable<CreateUpdateBookingModel> {

@@ -54,6 +54,7 @@
                     <mat-option [value]="passenger.id">{{passenger.name}}</mat-option>
                     }
                 </mat-select>
+                <mat-error>This field is required.</mat-error>
             </mat-form-field>
 
         </div>
@@ -86,6 +87,22 @@
 
         </div>
 
+    </div>
+
+    <div class="mt-3">
+
+        <button mat-raised-button [routerLink]="['/booking']">Cancel</button>
+
+        <button type="submit" mat-raised-button color="primary" class="ms-2">
+
+            <div *ngIf="thePageMode === pageModeEnum.Create; else submitBtnElse">
+                Create
+            </div>
+            <ng-template #submitBtnElse>
+                Save
+            </ng-template>
+
+        </button>
     </div>
 
 </form>
