@@ -24,11 +24,11 @@ export class CreateUpdateBookingComponent implements OnInit {
 
   form!: FormGroup;
   booking?: CreateUpdateBookingModel;
+  bookingId!: number;
 
   passengerLookup: LookupModel[] = [];
   driverLookup: LookupModel[] = [];
   carLookup: LookupModel[] = [];
-
 
   thePageMode: PageMode = PageMode.Create;
   pageModeEnum = PageMode;
@@ -53,6 +53,13 @@ export class CreateUpdateBookingComponent implements OnInit {
 
     this.loadLookups();
     this.buildForm();
+
+    this.setBookingId();
+
+    if (this.thePageMode === PageMode.Update) {
+
+      this.loadBooking();
+    }
   }
 
   submit(): void {
@@ -90,6 +97,37 @@ export class CreateUpdateBookingComponent implements OnInit {
       passengerIds: ['', Validators.required],
       carId: [],
       driverId: [],
+    });
+  }
+
+  private setBookingId(): void {
+
+    if (this.activatedRoute.snapshot.paramMap.get('id')) {
+
+      this.bookingId = Number(this.activatedRoute.snapshot.paramMap.get('id'));
+      this.thePageMode = PageMode.Update;
+    }
+
+  }
+
+  private loadBooking(): void {
+
+    this.spinner.show();
+
+    this.bookingSvc.getBookingForEdit(this.bookingId).subscribe({
+      next: (bookingFromApi: CreateUpdateBookingModel) => {
+
+        this.booking = bookingFromApi;
+        this.form.patchValue(bookingFromApi);
+      },
+      error: (err: HttpErrorResponse) => {
+
+        this.snackBar.open(`ERROR: ${err.message}`, "Error");
+      },
+      complete: () => {
+
+        this.spinner.hide();
+      }
     });
   }
 
@@ -187,7 +225,23 @@ export class CreateUpdateBookingComponent implements OnInit {
 
   private editBooking(): void {
 
+    this.spinner.show();
 
+    this.bookingSvc.editBooking(this.form.value).subscribe({
+      next: () => {
+
+        this.toastr.success(`Booking #${this.bookingId} has been saved successfully`);
+        this.router.navigate(['/booking']);
+      },
+      error: (err: HttpErrorResponse) => {
+
+        this.snackBar.open(`ERROR: ${err.message}`, "Error");
+      },
+      complete: () => {
+
+        this.spinner.hide();
+      }
+    });
   }
   //#endregion
 }
