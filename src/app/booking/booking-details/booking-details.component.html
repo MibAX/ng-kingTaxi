@@ -1,0 +1,90 @@
+<h1>
+    Booking Details
+    <span class="text-primary">#{{ booking?.id }} - {{ booking?.pickUpTime | date: 'shortTime' }}</span>
+</h1>
+<hr>
+
+<div class="row">
+    <div class="col-md-2">
+        Pickup Time
+    </div>
+    <div class="col-md-4">
+        <span class="fw-bold">{{ booking?.pickUpTime | date: 'shortTime' }}</span>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-2">
+        From
+    </div>
+    <div class="col-md-4">
+        <span class="fw-bold">{{ booking?.fromAddress }}</span>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-2">
+        To
+    </div>
+    <div class="col-md-4">
+        <span class="fw-bold">{{ booking?.toAddress }}</span>
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-2">
+        Driver
+    </div>
+    <div class="col-md-4">
+        {{ booking?.driverFullName }}
+    </div>
+</div>
+
+<div class="row mt-2">
+    <div class="col-md-2">
+        Car Plate Number
+    </div>
+    <div class="col-md-4">
+        {{ booking?.carPlateNumber }}
+    </div>
+</div>
+
+<hr>
+<button mat-raised-button color="basic" [routerLink]="['/booking']">Back</button>
+<button mat-raised-button color="primary" class="ms-2" [routerLink]="['/booking/edit', booking?.id]">Edit</button>
+<hr>
+
+<h2 class="mb-1 mt-4">Booking Passengers</h2>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Passenger</th>
+            <th>Age</th>
+            <th>Phone Number</th>
+            <th>Gender</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let passenger of booking?.passengers">
+            <td>{{ passenger.fullName }}</td>
+            <td>{{ passenger.age }}</td>
+            <td>{{ passenger.phoneNumber }}</td>
+            <td>
+                <span *ngIf="passenger.gender === genderEnum.Male; else driverGenderElse">
+                    <i class="fa-solid fa-mars text-primary"></i>
+                    <span class="text-primary ms-1">{{ genderEnum[passenger.gender] }}</span>
+                </span>
+                <ng-template #driverGenderElse>
+                    <i class="fa-solid fa-venus text-pink"></i>
+                    <span class="text-pink ms-1">{{ genderEnum[passenger.gender] }}</span>
+                </ng-template>
+            </td>
+            <td>
+                <a class="text-info" [routerLink]="['/passenger/details', passenger.id]" title="Details">
+                    <i class="fa-solid fa-circle-info"></i>
+                </a>
+            </td>
+        </tr>
+    </tbody>
+</table>

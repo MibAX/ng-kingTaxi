@@ -12,6 +12,7 @@ import { PassengerDetailsComponent } from './passenger/passenger-details/passeng
 import { CreateUpdatePassengerComponent } from './passenger/create-update-passenger/create-update-passenger.component';
 import { BookingComponent } from './booking/booking.component';
 import { CreateUpdateBookingComponent } from './booking/create-update-booking/create-update-booking.component';
+import { BookingDetailsComponent } from './booking/booking-details/booking-details.component';
 
 const routes: Routes = [
   {
@@ -77,6 +78,10 @@ const routes: Routes = [
   {
     path: 'booking/edit/:id',
     component: CreateUpdateBookingComponent
+  },
+  {
+    path: 'booking/details/:id',
+    component: BookingDetailsComponent
   }
 ];
 
